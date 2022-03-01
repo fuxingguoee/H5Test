@@ -8,7 +8,6 @@
         var Terminal = {
             // 辨别移动终端类型
             platform : function(){
-
                 var u = navigator.userAgent, app = navigator.appVersion;
                 return {
                     // android终端或者uc浏览器
@@ -29,7 +28,6 @@
             theUrl = 'https://www.pgyer.com/';
         }else if(Terminal.platform.iPhone){
             theUrl = 'https://appstoreconnect.apple.com/apps/1606835787/testflight/groups/aed75766-0f49-4fea-80a1-e7348d3ef846';
-        }
         }
  
         location.href = theUrl;
