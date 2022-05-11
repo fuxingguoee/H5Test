@@ -77,9 +77,10 @@
         }
 
         function download() {
+        let ip= returnCitySN["cip"]
             // 根据IP返回国家CODE
             $.ajax({
-                url: 'http://ip-api.com/json/' + returnCitySN["cip"]
+                url: 'http://ip-api.com/json/' + ip
             }).done((data) => {
                 console.log('country code-->', data.countryCode)
                 jumpToUrl(data && data.countryCode ? data.countryCode.toUpperCase() : '');
