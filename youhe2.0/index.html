@@ -76,22 +76,22 @@
             location.href = theUrl;
         }
 
-        function download() {
-            // 根据IP返回国家CODE
-            $.ajax({
-                url: 'http://ip-api.com/json/' + returnCitySN["cip"]
-            }).done((data) => {
-                console.log('country code-->', data.countryCode)
-                jumpToUrl(data && data.countryCode ? data.countryCode.toUpperCase() : '');
-            })
-            // geoip2.country(function (geoipResponse) {
-            //     console.log('geoip2-->', geoipResponse)
-            //     jumpToUrl(geoipResponse && geoipResponse.country && geoipResponse.country.iso_code ? geoipResponse.country.iso_code.toUpperCase() : '');
-            // }, function (error) {
-            //     console.log('error-->', error)
-            //     jumpToUrl('');
-            // });
-        }
+<!--        function download() {-->
+<!--            // 根据IP返回国家CODE-->
+<!--            $.ajax({-->
+<!--                url: 'http://ip-api.com/json/' + returnCitySN["cip"]-->
+<!--            }).done((data) => {-->
+<!--                console.log('country code&ndash;&gt;', data.countryCode)-->
+<!--                jumpToUrl(data && data.countryCode ? data.countryCode.toUpperCase() : '');-->
+<!--            })-->
+<!--            // geoip2.country(function (geoipResponse) {-->
+<!--            //     console.log('geoip2&ndash;&gt;', geoipResponse)-->
+<!--            //     jumpToUrl(geoipResponse && geoipResponse.country && geoipResponse.country.iso_code ? geoipResponse.country.iso_code.toUpperCase() : '');-->
+<!--            // }, function (error) {-->
+<!--            //     console.log('error&ndash;&gt;', error)-->
+<!--            //     jumpToUrl('');-->
+<!--            // });-->
+<!--        }-->
     </script>
 </body>
 </html>
