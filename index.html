@@ -1,0 +1,180 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>YOUHA 2.0</title>
+    <style type="text/css">
+        html {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100%;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        html,
+        body,
+        p {
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            margin-top: -30px;
+        }
+
+        img {
+            width: 80px;
+            height: 80px;
+            border-radius: 5px;
+        }
+
+        .name {
+            margin-top: 8px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .tag {
+            margin-top: 8px;
+            color: #777;
+        }
+
+        .time {
+            margin-top: 15px;
+            color: #aaa;
+        }
+
+        .tip {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        button {
+            margin-top: 50px;
+            width: 150px;
+            height: 40px;
+            border-radius: 40px;
+            color: #fff;
+            background: #90ded1;
+            border: none;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="./youhe2.1.jpg" />
+        <p class="name">MY YOUHA</p>
+        <p class="tag">正式版</p>
+
+        <p class="time">更新于：2022/05/13</p>
+
+        <button onclick="download()">下载安装</button>
+        <p class="tip">若下载失败，可尝试在应用商店直接搜索</p>
+    </div>
+    <script src="jquery-3.6.0.min.js" type="text/javascript"></script>
+    <script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
+    <!--    <script src="https://geoip-js.com/js/apis/geoip2/v2.1/geoip2.js" type="text/javascript"></script>-->
+    <!--    <script type="text/javascript" src="https://cdn.bootcss.com/vConsole/3.3.0/vconsole.min.js"></script>-->
+    <!--    <script>new VConsole();</script>-->
+    <script>
+        function download() {
+            // 获取终端的相关信息
+            var Terminal = {
+                // 辨别移动终端类型
+                platform: function () {
+                    var u = navigator.userAgent, app = navigator.appVersion;
+                    return {
+                        // android终端或者uc浏览器
+                        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
+                        // 是否为iPhone或者QQHD浏览器
+                        iPhone: u.indexOf('iPhone') > -1,
+                        // 是否iPad
+                        iPad: u.indexOf('iPad') > -1
+                    };
+                }(),
+                // 辨别移动终端的语言：zh-cn、en-us、ko-kr、ja-jp...
+                language: (navigator.browserLanguage || navigator.language).toLowerCase()
+            }
+
+
+            // 根据不同的终端，跳转到不同的地址
+            var theUrl = 'https://www.eyouha.com/';
+            if (Terminal.platform.android) {
+                var ip = returnCitySN.cip;
+                var country_code = '';
+                console.log('returnCitySN', ip)
+
+                var country_code = null;
+                $.getJSON('http://ipinfo.io/' + ip, function (data) {
+                    // alert(country_code);
+                    country_code = data.country;
+                    console.log('country_code', country_code)
+                });
+
+                // $.ajax({
+                //     // url: 'https://ip-api.com/json/' + ip
+                //     url: 'https://ipinfo.io/' + ip
+                // }).done((response) => {
+                //     console.log('country code-->', response.countryCode)
+                //     IP_NAME = response && response.countryCode ? response.countryCode.toUpperCase() : ''
+                // }).error((error) => {
+                //     console.log('error&ndash;&gt;', error)
+                // })
+
+                // 中国大陆下载apk，非大陆到跳转到google play
+                if (country_code === 'CN' && country_code === '') {
+                    // 国内安卓
+                    theUrl = 'http://download.eyouha.com/YOUHA_2.0_1.0.0.apk';
+                } else {
+                    // 国外安卓
+                    theUrl = 'http://download.eyouha.com/YOUHA_2.0_1.0.0.apk';
+                }
+            } else if (Terminal.platform.iPhone) {
+                // IOS
+                // theUrl = 'http://download.eyouha.com/YOUHA_2.0_1.0.0.apk';
+                // 获取智能机信息为iPhone设备时，电脑测试会报错，原因是页面跳转会自动链接苹果商店，而windows的电脑并没有这个苹果商店
+                theUrl = ' https://www.eyouha.com/';
+                // theUrl = 'https://apps.apple.com/cn/app/id1618365842';
+                // theUrl = 'https://apps.apple.com/id1618365842';
+            }
+            location.href = theUrl;
+        }
+    </script>
+</body>
+
+</html>
+
+<script type="text/javascript">
+    var p3 = document.getElementsByTagName("p")[2];//获取第一个p标签
+    var p = function () {
+        var d = new Date();//设置时间对象
+        var year = d.getFullYear()  //获取年
+        var month = d.getMonth() + 1;  //获取月，从 Date 对象返回月份 (0 ~ 11)，故在此处+1
+        var day = d.getDay()    //获取日
+        var days = d.getDate() //获取日期
+        var hour = d.getHours()   //获取小时
+        var minute = d.getMinutes()  //获取分钟
+        var second = d.getSeconds()   //获取秒
+        if (month < 10) month = "0" + month
+        if (days < 10) days = "0" + days
+        if (hour < 10) hour = "0" + hour
+        if (minute < 10) minute = "0" + minute
+        if (second < 10) second = "0" + second
+        var da = year + " 年 " + month + " 月 " + days + " 日 " + hour + " : " + minute + " :" + second
+        // console.log('current_time', a);
+        p3.innerHTML = da;//给第一个p标签赋值当前时间
+    }
+    window.setInterval("p()", 1000);//输出更改p标签内容并且在1000毫秒的快进动态显示
+</script>
