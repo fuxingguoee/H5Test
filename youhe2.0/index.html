@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
     <title>YOUHA 2.0</title>
     <style type="text/css">
         html { height: 100%; }
@@ -25,7 +25,7 @@
         <p class="name">MY YOUHA</p>
         <p class="tag">正式版</p>
 
-        <p class="time">更新于：2022/05/10 15:00</p>
+        <p class="time">更新于：2022/05/12 15:00</p>
 
         <button onclick="download()">下载安装</button>
         <p class="tip">若下载失败，可尝试在应用商店直接搜索</p>
@@ -36,7 +36,7 @@
 <!--    <script type="text/javascript" src="https://cdn.bootcss.com/vConsole/3.3.0/vconsole.min.js"></script>-->
 <!--    <script>new VConsole();</script>-->
     <script>
-        function jumpToUrl (IP_NAME) {
+        function download () {
             // 获取终端的相关信息
             var Terminal = {
                 // 辨别移动终端类型
@@ -57,15 +57,23 @@
 
             // 根据不同的终端，跳转到不同的地址
             var theUrl = 'https://www.eyouha.com/';
-            console.log('Terminal--> platform:' +Terminal.platform.android +'IP_NAME:'+IP_NAME)
+            console.log('Terminal--> platform:' +Terminal.platform.android +'country_code:'+country_code)
             if (Terminal.platform.android) {
+                var ip = returnCitySN.cip;
+                console.log("ip",ip);
+                var country_code = null;
+                $.getJSON('http://ipinfo.io/' + ip, function (data) {
+                    // alert(country_code);
+                    country_code = data.country;
+                    console.log('country_code', country_code)
+                });
                 // 中国大陆下载apk，非大陆到跳转到google play
-                if (IP_NAME === 'CN') {
+                if (country_code === 'CN' && country_code === '') {
                     // 国内安卓
-                    theUrl = 'http://download.eyouha.com/YOUHA_2.0_1.0.0.apk';
+                    theUrl = 'http://download.eyouha.com/My_YOUHA_1.0.0.apk';
                 } else {
                     // 国外安卓
-                    theUrl = 'http://download.eyouha.com/YOUHA_2.0_1.0.0.apk';
+                    theUrl = 'http://download.eyouha.com/My_YOUHA_1.0.0.apk';
                 }
             } else if (Terminal.platform.iPhone) {
                 // IOS
@@ -77,15 +85,17 @@
             location.href = theUrl;
         }
 
-        function download() {
+        // function download() {
+            
             // 根据IP返回国家CODE
-            console.log('returnCitySN', returnCitySN)
-<!--            $.ajax({-->
-<!--                url: 'http://ip-api.com/json/' + returnCitySN.cip-->
-<!--            }).done((data) => {-->
-<!--                console.log('country code&ndash;&gt;', data.countryCode)-->
-<!--                jumpToUrl(data && data.countryCode ? data.countryCode.toUpperCase() : '');-->
-<!--            })-->
+            // $.ajax({
+            //     // url: `https://ip.useragentinfo.com/json?ip=${returnCitySN["cip"]}`,
+            //     // dataType:"jsonp",
+            //     url: 'http://ip-api.com/json/' + returnCitySN["cip"]
+            // }).done((data) => {
+            //     console.log('country code-->', data.short_name)
+            //     jumpToUrl(data && data.countryCode ? data.countryCode.toUpperCase() : '');
+            // })
             // geoip2.country(function (geoipResponse) {
             //     console.log('geoip2-->', geoipResponse)
             //     jumpToUrl(geoipResponse && geoipResponse.country && geoipResponse.country.iso_code ? geoipResponse.country.iso_code.toUpperCase() : '');
@@ -93,7 +103,7 @@
             //     console.log('error-->', error)
             //     jumpToUrl('');
             // });
-        }
+        // }
     </script>
 </body>
 </html>
