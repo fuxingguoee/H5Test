@@ -112,21 +112,28 @@
             // 根据不同的终端，跳转到不同的地址
             var theUrl = 'https://www.eyouha.com/';
             if (Terminal.platform.android) {
-                var ip = returnCitySN.cip;
-                console.log("ip", ip);
-                var country_code = "";
-
+                var ip = "";
                 try {
-                    $.getJSON('http://ipinfo.io/' + ip, function (data) {
-                        // alert(country_code);
-                        country_code = data.country;
-                        console.log('country_code', country_code)
-                    });
+                    ip = returnCitySN.cip
+                    console.log("ip", ip);
                 } catch (e) {
                     console.log('捕获到异常：', e);
-                    country_code = ""
                 }
 
+
+                var country_code = "";
+                if (ip != "") {
+                    try {
+                        $.getJSON('http://ipinfo.io/' + ip, function (data) {
+                            // alert(country_code);
+                            country_code = data.country;
+                            console.log('country_code', country_code)
+                        });
+                    } catch (e) {
+                        console.log('捕获到异常：', e);
+                    }
+
+                }
 
                 // 中国大陆下载apk，非大陆到跳转到google play
                 if (country_code === 'CN') {
