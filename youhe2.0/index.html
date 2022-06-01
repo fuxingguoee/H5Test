@@ -90,7 +90,6 @@
 
                 var country_code = "";
                 if (ip != "") {
-<!--                    try {-->
                         $.getJSON('http://ipinfo.io/' + ip, function (data) {
                             country_code = data.country;
                             console.log('country_code:', country_code)
