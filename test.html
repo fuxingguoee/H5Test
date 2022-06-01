@@ -182,7 +182,66 @@
             // theUrl = 'http://download.eyouha.com/YOUHA_2.0_1.0.0.apk';
             // 获取智能机信息为iPhone设备时，电脑测试会报错，原因是页面跳转会自动链接苹果商店，而windows的电脑并没有这个苹果商店
             theUrl = 'https://apps.apple.com/app/id1618365842';
-            // theUrl = 'https://apps.apple.com/id1618365842';
+
+                    } catch (e) {
+                        console.log('捕获到异常：', e);
+                    }
+                    console.log('000000:',country_code);
+                }
+                // 中国大陆下载apk，非大陆到跳转到google play
+                if (country_code == 'CN') {
+                    // alert('国内',country_code)
+                    // 国内安卓
+                    // theUrl = 'http://download.eyouha.com/My_YOUHA_1.0.0.apk';
+                    theUrl = 'https://www.pgyer.com/7ckG';
+                } else if(country_code == 'HK' || country_code == 'TW' || country_code == 'MO' || country_code =='') {
+                    //香港 台湾 澳门 跳转goole play
+                    theUrl = 'https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=com.youha.double';
+
+                } else {
+                    // alert('国外',country_code)
+                    // 国外安卓
+                    // theUrl = 'http://download.eyouha.com/My_YOUHA_1.0.0.apk';
+                    // theUrl = 'https://play.google.com/store/apps/details?id=com.youha.double';
+                    theUrl = 'https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=com.youha.double';
+                }
+                // theUrl = 'https://www.pgyer.com/7ckG'
+            } else if (Terminal.platform.iPhone) {
+                // IOS
+                // theUrl = 'http://download.eyouha.com/YOUHA_2.0_1.0.0.apk';
+                // 获取智能机信息为iPhone设备时，电脑测试会报错，原因是页面跳转会自动链接苹果商店，而windows的电脑并没有这个苹果商店
+                theUrl = 'https://apps.apple.com/app/id1618365842';
+                // theUrl = 'https://apps.apple.com/id1618365842';
+            }
+            location.href = theUrl;
+
+
+
+
+        // function download() {
+
+        //     // 根据IP返回国家CODE
+        //     $.ajax({
+        //         // url: `https://ip.useragentinfo.com/json?ip=${returnCitySN["cip"]}`,
+        //         // dataType:"jsonp",
+        //         url: 'http://ip-api.com/json/' + returnCitySN["cip"]
+        //     }).done((data) => {
+        //         console.log('country code-->', data.short_name)
+        //         jumpToUrl(data && data.countryCode ? data.countryCode.toUpperCase() : '');
+        //     })
+        //     // geoip2.country(function (geoipResponse) {
+        //     //     console.log('geoip2-->', geoipResponse)
+        //     //     jumpToUrl(geoipResponse && geoipResponse.country && geoipResponse.country.iso_code ? geoipResponse.country.iso_code.toUpperCase() : '');
+        //     // }, function (error) {
+        //     //     console.log('error-->', error)
+        //     //     jumpToUrl('');
+        //     // });
+        // }
+    </script>
+</body>
+</html>
+
+// theUrl = 'https://apps.apple.com/id1618365842';
         }
         location.href = theUrl;
 
