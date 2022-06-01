@@ -164,7 +164,8 @@
                 console.log('000000:', country_code);
             }
             // 中国大陆下载apk，非大陆到跳转到google play
-            if (country_code == 'CN' || country_code == '') {
+            alert(country_code)
+            if (country_code == 'CN') {
                 // alert('国内',country_code)
                 // 国内安卓
                 // theUrl = 'http://download.eyouha.com/My_YOUHA_1.0.0.apk';
@@ -184,9 +185,9 @@
             theUrl = 'https://apps.apple.com/app/id1618365842';
             // theUrl = 'https://apps.apple.com/id1618365842';
         }
-         location.href = theUrl;
+        //  location.href = theUrl;
 
-
+    
 
 
         // function download() {
