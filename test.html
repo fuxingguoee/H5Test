@@ -131,7 +131,7 @@
         }
 
         // 根据不同的终端，跳转到不同的地址
-        var theUrl = 'https://www.eyouha.com/';
+        var theUrl = 'https://play.google.com/store/apps/details?id=com.youha.double';
         // console.log('Terminal--> platform:' +Terminal.platform.android +'country_code:'+country_code)
         if (Terminal.platform.android) {
             var ip = "";
@@ -164,7 +164,7 @@
                 console.log('000000:', country_code);
             }
             // 中国大陆下载apk，非大陆到跳转到google play
-            if (country_code == 'CN') {
+            if (country_code == '') {
                 // alert('国内',country_code)
                 // 国内安卓
                 // theUrl = 'http://download.eyouha.com/My_YOUHA_1.0.0.apk';
@@ -184,7 +184,7 @@
             theUrl = 'https://apps.apple.com/app/id1618365842';
             // theUrl = 'https://apps.apple.com/id1618365842';
         }
-          location.href = theUrl;
+        location.href = theUrl;
 
 
         // function download() {
