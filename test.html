@@ -144,23 +144,24 @@
 
             var country_code = "";
             if (ip != "") {
-                // $.getJSON('http://ipinfo.io/' + ip, function (data) {
-                //     country_code = data.country;
-                //     console.log('country_code:', country_code)
-                // });
-                try {
-                    $.ajax({
-                        url: 'http://ip-api.com/json/' + ip,
-                        async: false
-                    }).done((data) => {
-                        country_code = data.countryCode
-                        console.log('country_code:', data.countryCode)
-                        return this.country_code
-                    })
-                    console.log('222222222:', country_code);
-                } catch (e) {
-                    console.log('捕获到异常：', e);
-                }
+                $.ajaxSettings.async = false;
+                $.getJSON('http://ipinfo.io/' + ip, function (data) {
+                    country_code = data.country;
+                    console.log('country_code:', country_code)
+                });
+                // try {
+                //     $.ajax({
+                //         url: 'http://ip-api.com/json/' + ip,
+                //         async: false
+                //     }).done((data) => {
+                //         country_code = data.countryCode
+                //         console.log('country_code:', data.countryCode)
+                //         return this.country_code
+                //     })
+                //     console.log('222222222:', country_code);
+                // } catch (e) {
+                //     console.log('捕获到异常：', e);
+                // }
                 console.log('000000:', country_code);
             }
             // 中国大陆下载apk，非大陆到跳转到google play
