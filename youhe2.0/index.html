@@ -91,22 +91,22 @@
                 var country_code = "";
                 if (ip != "") {
                     try {
-                        // $.getJSON('http://ipinfo.io/' + ip, function (data) {
-                        //     country_code = data.country;
-                        //     console.log('country_code:', country_code)
-                        // });
-                        $.ajax({
-                            url: 'http://ip-api.com/json/' + ip,
-                            async:false
-                        }).done((data)=>{
-                            country_code = data.countryCode
-                            console.log('country_code:', data.countryCode)
-                            return this.country_code
-                        })
-                        console.log('222222222:',country_code);
-                    } catch (e) {
-                        console.log('捕获到异常：', e);
-                    }
+                        $.getJSON('http://ipinfo.io/' + ip, function (data) {
+                            country_code = data.country;
+                            console.log('country_code:', country_code)
+                        });
+                    //     $.ajax({
+                    //         url: 'http://ip-api.com/json/' + ip,
+                    //         async:false
+                    //     }).done((data)=>{
+                    //         country_code = data.countryCode
+                    //         console.log('country_code:', data.countryCode)
+                    //         return this.country_code
+                    //     })
+                    //     console.log('222222222:',country_code);
+                    // } catch (e) {
+                    //     console.log('捕获到异常：', e);
+                    // }
                     console.log('000000:',country_code);
                 }
                 // 中国大陆下载apk，非大陆到跳转到google play
@@ -119,7 +119,7 @@
                     // alert('国外',country_code)
                     // 国外安卓
                     // theUrl = 'http://download.eyouha.com/My_YOUHA_1.0.0.apk';
-                    theUrl = 'market://details??id=com.youha.double';
+                    theUrl = 'https://play.google.com/store/apps/details?id=com.youha.double';
                 }
                 // theUrl = 'https://www.pgyer.com/7ckG'
             } else if (Terminal.platform.iPhone) {
